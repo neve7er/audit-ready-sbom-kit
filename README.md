@@ -170,3 +170,13 @@ See [docs/architecture.md](docs/architecture.md) for the full roadmap.
 | [docs/policy-schema.md](docs/policy-schema.md) | Security teams managing exceptions |
 | [docs/sarif-integration.md](docs/sarif-integration.md) | DevOps integrating with GitHub Advanced Security |
 | [docs/transparency.md](docs/transparency.md) | Security/compliance reviewers |
+
+---
+
+## Contributors
+
+### Human
+- **[neve7er](https://github.com/neve7er)** - Creator & Maintainer
+
+### AI Assistant
+- **[Claude](https://www.anthropic.com/claude) by Anthropic** - Code review, architecture design, debugging assistance, and documentation
