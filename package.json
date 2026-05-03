@@ -1,6 +1,6 @@
 {
   "name": "audit-ready",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "description": "Generate CycloneDX 1.5 SBOMs and audit-ready risk triage reports from package-lock.json with rule-based verdicts and VEX output",
   "type": "module",
   "main": "./dist/cli/index.js",

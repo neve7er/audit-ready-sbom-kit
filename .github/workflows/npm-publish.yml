@@ -43,27 +43,36 @@ jobs:
 
       - id: detect
         run: |
-          TAG="${{ github.ref_name }}"
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-          echo "Detected tag: $TAG"
+          RAW_TAG="${{ github.ref_name }}"
+          # Strip any surrounding whitespace/newlines
+          TAG="${RAW_TAG#"${RAW_TAG%%[![:space:]]*}"}"
+          TAG="${TAG%"${TAG##*[![:space:]]}"}"
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "Detected tag: '${TAG}'"
 
       - name: Publish beta
         if: startsWith(steps.detect.outputs.tag, 'beta/v')
-        run: npm publish --tag beta --provenance --access public
+        run: |
+          echo "Publishing beta version"
+          npm publish --tag beta --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish stable
         if: startsWith(steps.detect.outputs.tag, 'v') && !startsWith(steps.detect.outputs.tag, 'beta/v')
-        run: npm publish --provenance --access public
+        run: |
+          echo "Publishing stable version"
+          npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Fail on unknown tag format
-        if: steps.detect.outputs.tag != '' && !startsWith(steps.detect.outputs.tag, 'v')
+        if: steps.detect.outputs.tag != '' && !startsWith(steps.detect.outputs.tag, 'beta/v') && !startsWith(steps.detect.outputs.tag, 'v')
         run: |
-          echo "Unknown tag format: ${{ steps.detect.outputs.tag }}"
-          echo "Expected 'v*' or 'beta/v*' — refusing to publish"
+          echo "ERROR: Unknown tag format: '${{ steps.detect.outputs.tag }}'"
+          echo "Expected:"
+          echo "  - beta/v*  for beta releases"
+          echo "  - v*       for stable releases"
           exit 1
 
   release:
