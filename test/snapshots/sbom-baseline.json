@@ -1,0 +1,109 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:00000000-0000-0000-0000-000000000000",
+  "version": 1,
+  "metadata": {
+    "timestamp": "1970-01-01T00:00:00.000Z",
+    "tools": [
+      {
+        "name": "audit-ready",
+        "version": "0.0.1"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "baseline-test",
+      "version": "1.0.0",
+      "bom-ref": "pkg:npm/baseline-test@1.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "lodash",
+      "version": "4.17.21",
+      "purl": "pkg:npm/lodash@4.17.21",
+      "bom-ref": "pkg:npm/lodash@4.17.21",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        { "name": "ar:reasonCode", "value": "NO_KNOWN_VULNERABILITY" }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1.0
+      }
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "1.0.0",
+      "purl": "pkg:npm/vitest@1.0.0",
+      "bom-ref": "pkg:npm/vitest@1.0.0",
+      "reasonCode": "DEV_DEPENDENCY_ONLY",
+      "scope": "excluded",
+      "vulnerabilities": [
+        {
+          "id": "CVE-2023-0001",
+          "ratings": [{ "severity": "high" }],
+          "affects": [{ "ref": "pkg:npm/vitest@1.0.0" }]
+        }
+      ],
+      "properties": [
+        { "name": "ar:reasonCode", "value": "DEV_DEPENDENCY_ONLY" }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "Development dependency — not deployed to production",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "fsevents",
+      "version": "2.3.0",
+      "purl": "pkg:npm/fsevents@2.3.0",
+      "bom-ref": "pkg:npm/fsevents@2.3.0",
+      "reasonCode": "DIRECT_UNPATCHED",
+      "scope": "required",
+      "vulnerabilities": [
+        {
+          "id": "CVE-2023-0002",
+          "ratings": [{ "severity": "critical" }],
+          "affects": [{ "ref": "pkg:npm/fsevents@2.3.0" }]
+        }
+      ],
+      "properties": [
+        { "name": "ar:reasonCode", "value": "DIRECT_UNPATCHED" }
+      ],
+      "arTriage": {
+        "riskTier": "Critical",
+        "rationale": "Direct dependency with active vulnerability requiring remediation",
+        "reachabilityWeight": 1.0
+      }
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "id": "CVE-2023-0001",
+      "ratings": [{ "severity": "high" }],
+      "affects": [{ "ref": "pkg:npm/vitest@1.0.0" }],
+      "analysis": {
+        "state": "not_affected",
+        "justification": "Dependency is a development-only dependency and not deployed to production"
+      }
+    },
+    {
+      "id": "CVE-2023-0002",
+      "ratings": [{ "severity": "critical" }],
+      "affects": [{ "ref": "pkg:npm/fsevents@2.3.0" }],
+      "analysis": {
+        "state": "affected",
+        "justification": "Direct dependency with known unpatched vulnerability"
+      }
+    }
+  ]
+}

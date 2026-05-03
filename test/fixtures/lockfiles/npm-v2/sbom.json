@@ -1,0 +1,52 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "c0733cbb-7dd9-48d0-bfeb-9bc1f5352930",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-04-29T12:35:56.522Z",
+    "tools": [
+      {
+        "name": "audit-ready",
+        "version": "0.0.1"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "test-project",
+      "version": "1.0.0",
+      "description": "Test fixture for Phase 0",
+      "author": "Test Author",
+      "bom-ref": "pkg:npm/test-project@1.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "lodash",
+      "version": "4.17.21",
+      "purl": "pkg:npm/lodash@4.17.21",
+      "bom-ref": "pkg:npm/lodash@4.17.21",
+      "scope": "required",
+      "vulnerabilities": []
+    },
+    {
+      "type": "library",
+      "name": "commander",
+      "version": "11.1.0",
+      "purl": "pkg:npm/commander@11.1.0",
+      "bom-ref": "pkg:npm/commander@11.1.0",
+      "scope": "required",
+      "vulnerabilities": []
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "1.6.0",
+      "purl": "pkg:npm/vitest@1.6.0",
+      "bom-ref": "pkg:npm/vitest@1.6.0",
+      "scope": "excluded",
+      "vulnerabilities": []
+    }
+  ]
+}

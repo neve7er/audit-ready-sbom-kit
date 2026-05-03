@@ -1,0 +1,3091 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:201bb7c2-db44-4537-b953-358fb2c9f632",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-05-01T20:25:20.291Z",
+    "tools": [
+      {
+        "name": "audit-ready",
+        "version": "0.0.1"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "audit-ready",
+      "version": "0.0.1",
+      "description": "Generate CycloneDX SBOM and audit-ready risk triage reports",
+      "author": "",
+      "bom-ref": "pkg:npm/audit-ready@0.0.1"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "@cspotcode/source-map-support",
+      "version": "0.8.1",
+      "purl": "pkg:npm/%40cspotcode%2Fsource-map-support@0.8.1",
+      "bom-ref": "pkg:npm/%40cspotcode%2Fsource-map-support@0.8.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/aix-ppc64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Faix-ppc64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Faix-ppc64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/android-arm",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fandroid-arm@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fandroid-arm@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/android-arm64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fandroid-arm64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fandroid-arm64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/android-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fandroid-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fandroid-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/darwin-arm64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fdarwin-arm64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fdarwin-arm64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/darwin-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fdarwin-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fdarwin-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/freebsd-arm64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Ffreebsd-arm64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Ffreebsd-arm64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/freebsd-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Ffreebsd-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Ffreebsd-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-arm",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-arm@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-arm@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-arm64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-arm64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-arm64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-ia32",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-ia32@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-ia32@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-loong64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-loong64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-loong64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-mips64el",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-mips64el@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-mips64el@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-ppc64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-ppc64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-ppc64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-riscv64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-riscv64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-riscv64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-s390x",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-s390x@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-s390x@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/linux-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Flinux-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Flinux-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/netbsd-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fnetbsd-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fnetbsd-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/openbsd-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fopenbsd-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fopenbsd-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/sunos-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fsunos-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fsunos-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/win32-arm64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fwin32-arm64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fwin32-arm64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/win32-ia32",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fwin32-ia32@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fwin32-ia32@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@esbuild/win32-x64",
+      "version": "0.21.5",
+      "purl": "pkg:npm/%40esbuild%2Fwin32-x64@0.21.5",
+      "bom-ref": "pkg:npm/%40esbuild%2Fwin32-x64@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@jest/schemas",
+      "version": "29.6.3",
+      "purl": "pkg:npm/%40jest%2Fschemas@29.6.3",
+      "bom-ref": "pkg:npm/%40jest%2Fschemas@29.6.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/resolve-uri",
+      "version": "3.1.2",
+      "purl": "pkg:npm/%40jridgewell%2Fresolve-uri@3.1.2",
+      "bom-ref": "pkg:npm/%40jridgewell%2Fresolve-uri@3.1.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/sourcemap-codec",
+      "version": "1.5.5",
+      "purl": "pkg:npm/%40jridgewell%2Fsourcemap-codec@1.5.5",
+      "bom-ref": "pkg:npm/%40jridgewell%2Fsourcemap-codec@1.5.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@jridgewell/trace-mapping",
+      "version": "0.3.9",
+      "purl": "pkg:npm/%40jridgewell%2Ftrace-mapping@0.3.9",
+      "bom-ref": "pkg:npm/%40jridgewell%2Ftrace-mapping@0.3.9",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-android-arm-eabi",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-android-arm-eabi@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-android-arm-eabi@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-android-arm64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-android-arm64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-android-arm64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-darwin-arm64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-darwin-arm64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-darwin-arm64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-darwin-x64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-darwin-x64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-darwin-x64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-freebsd-arm64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-freebsd-arm64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-freebsd-arm64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-freebsd-x64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-freebsd-x64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-freebsd-x64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-arm-gnueabihf",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-arm-gnueabihf@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-arm-gnueabihf@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-arm-musleabihf",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-arm-musleabihf@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-arm-musleabihf@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-arm64-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-arm64-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-arm64-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-arm64-musl",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-arm64-musl@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-arm64-musl@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-loong64-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-loong64-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-loong64-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-loong64-musl",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-loong64-musl@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-loong64-musl@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-ppc64-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-ppc64-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-ppc64-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-ppc64-musl",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-ppc64-musl@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-ppc64-musl@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-riscv64-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-riscv64-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-riscv64-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-riscv64-musl",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-riscv64-musl@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-riscv64-musl@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-s390x-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-s390x-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-s390x-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-x64-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-x64-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-x64-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-linux-x64-musl",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-linux-x64-musl@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-linux-x64-musl@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-openbsd-x64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-openbsd-x64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-openbsd-x64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-openharmony-arm64",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-openharmony-arm64@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-openharmony-arm64@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-win32-arm64-msvc",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-win32-arm64-msvc@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-win32-arm64-msvc@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-win32-ia32-msvc",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-win32-ia32-msvc@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-win32-ia32-msvc@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-win32-x64-gnu",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-win32-x64-gnu@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-win32-x64-gnu@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@rollup/rollup-win32-x64-msvc",
+      "version": "4.60.2",
+      "purl": "pkg:npm/%40rollup%2Frollup-win32-x64-msvc@4.60.2",
+      "bom-ref": "pkg:npm/%40rollup%2Frollup-win32-x64-msvc@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "@sinclair/typebox",
+      "version": "0.27.10",
+      "purl": "pkg:npm/%40sinclair%2Ftypebox@0.27.10",
+      "bom-ref": "pkg:npm/%40sinclair%2Ftypebox@0.27.10",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@tsconfig/node10",
+      "version": "1.0.12",
+      "purl": "pkg:npm/%40tsconfig%2Fnode10@1.0.12",
+      "bom-ref": "pkg:npm/%40tsconfig%2Fnode10@1.0.12",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@tsconfig/node12",
+      "version": "1.0.11",
+      "purl": "pkg:npm/%40tsconfig%2Fnode12@1.0.11",
+      "bom-ref": "pkg:npm/%40tsconfig%2Fnode12@1.0.11",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@tsconfig/node14",
+      "version": "1.0.3",
+      "purl": "pkg:npm/%40tsconfig%2Fnode14@1.0.3",
+      "bom-ref": "pkg:npm/%40tsconfig%2Fnode14@1.0.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@tsconfig/node16",
+      "version": "1.0.4",
+      "purl": "pkg:npm/%40tsconfig%2Fnode16@1.0.4",
+      "bom-ref": "pkg:npm/%40tsconfig%2Fnode16@1.0.4",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@types/estree",
+      "version": "1.0.8",
+      "purl": "pkg:npm/%40types%2Festree@1.0.8",
+      "bom-ref": "pkg:npm/%40types%2Festree@1.0.8",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@types/node",
+      "version": "20.19.39",
+      "purl": "pkg:npm/%40types%2Fnode@20.19.39",
+      "bom-ref": "pkg:npm/%40types%2Fnode@20.19.39",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@vitest/expect",
+      "version": "1.6.1",
+      "purl": "pkg:npm/%40vitest%2Fexpect@1.6.1",
+      "bom-ref": "pkg:npm/%40vitest%2Fexpect@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@vitest/runner",
+      "version": "1.6.1",
+      "purl": "pkg:npm/%40vitest%2Frunner@1.6.1",
+      "bom-ref": "pkg:npm/%40vitest%2Frunner@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@vitest/snapshot",
+      "version": "1.6.1",
+      "purl": "pkg:npm/%40vitest%2Fsnapshot@1.6.1",
+      "bom-ref": "pkg:npm/%40vitest%2Fsnapshot@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@vitest/spy",
+      "version": "1.6.1",
+      "purl": "pkg:npm/%40vitest%2Fspy@1.6.1",
+      "bom-ref": "pkg:npm/%40vitest%2Fspy@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "@vitest/utils",
+      "version": "1.6.1",
+      "purl": "pkg:npm/%40vitest%2Futils@1.6.1",
+      "bom-ref": "pkg:npm/%40vitest%2Futils@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "acorn",
+      "version": "8.16.0",
+      "purl": "pkg:npm/acorn@8.16.0",
+      "bom-ref": "pkg:npm/acorn@8.16.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "acorn-walk",
+      "version": "8.3.5",
+      "purl": "pkg:npm/acorn-walk@8.3.5",
+      "bom-ref": "pkg:npm/acorn-walk@8.3.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "ajv",
+      "version": "8.20.0",
+      "purl": "pkg:npm/ajv@8.20.0",
+      "bom-ref": "pkg:npm/ajv@8.20.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "ajv-formats",
+      "version": "3.0.1",
+      "purl": "pkg:npm/ajv-formats@3.0.1",
+      "bom-ref": "pkg:npm/ajv-formats@3.0.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "ansi-styles",
+      "version": "5.2.0",
+      "purl": "pkg:npm/ansi-styles@5.2.0",
+      "bom-ref": "pkg:npm/ansi-styles@5.2.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "arg",
+      "version": "4.1.3",
+      "purl": "pkg:npm/arg@4.1.3",
+      "bom-ref": "pkg:npm/arg@4.1.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "assertion-error",
+      "version": "1.1.0",
+      "purl": "pkg:npm/assertion-error@1.1.0",
+      "bom-ref": "pkg:npm/assertion-error@1.1.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "cac",
+      "version": "6.7.14",
+      "purl": "pkg:npm/cac@6.7.14",
+      "bom-ref": "pkg:npm/cac@6.7.14",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "chai",
+      "version": "4.5.0",
+      "purl": "pkg:npm/chai@4.5.0",
+      "bom-ref": "pkg:npm/chai@4.5.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "check-error",
+      "version": "1.0.3",
+      "purl": "pkg:npm/check-error@1.0.3",
+      "bom-ref": "pkg:npm/check-error@1.0.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "commander",
+      "version": "11.1.0",
+      "purl": "pkg:npm/commander@11.1.0",
+      "bom-ref": "pkg:npm/commander@11.1.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "confbox",
+      "version": "0.1.8",
+      "purl": "pkg:npm/confbox@0.1.8",
+      "bom-ref": "pkg:npm/confbox@0.1.8",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "create-require",
+      "version": "1.1.1",
+      "purl": "pkg:npm/create-require@1.1.1",
+      "bom-ref": "pkg:npm/create-require@1.1.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "cross-spawn",
+      "version": "7.0.6",
+      "purl": "pkg:npm/cross-spawn@7.0.6",
+      "bom-ref": "pkg:npm/cross-spawn@7.0.6",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "debug",
+      "version": "4.4.3",
+      "purl": "pkg:npm/debug@4.4.3",
+      "bom-ref": "pkg:npm/debug@4.4.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "deep-eql",
+      "version": "4.1.4",
+      "purl": "pkg:npm/deep-eql@4.1.4",
+      "bom-ref": "pkg:npm/deep-eql@4.1.4",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "diff",
+      "version": "4.0.4",
+      "purl": "pkg:npm/diff@4.0.4",
+      "bom-ref": "pkg:npm/diff@4.0.4",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "diff-sequences",
+      "version": "29.6.3",
+      "purl": "pkg:npm/diff-sequences@29.6.3",
+      "bom-ref": "pkg:npm/diff-sequences@29.6.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "esbuild",
+      "version": "0.21.5",
+      "purl": "pkg:npm/esbuild@0.21.5",
+      "bom-ref": "pkg:npm/esbuild@0.21.5",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "estree-walker",
+      "version": "3.0.3",
+      "purl": "pkg:npm/estree-walker@3.0.3",
+      "bom-ref": "pkg:npm/estree-walker@3.0.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "execa",
+      "version": "8.0.1",
+      "purl": "pkg:npm/execa@8.0.1",
+      "bom-ref": "pkg:npm/execa@8.0.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "fast-deep-equal",
+      "version": "3.1.3",
+      "purl": "pkg:npm/fast-deep-equal@3.1.3",
+      "bom-ref": "pkg:npm/fast-deep-equal@3.1.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "fast-uri",
+      "version": "3.1.0",
+      "purl": "pkg:npm/fast-uri@3.1.0",
+      "bom-ref": "pkg:npm/fast-uri@3.1.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "fsevents",
+      "version": "2.3.3",
+      "purl": "pkg:npm/fsevents@2.3.3",
+      "bom-ref": "pkg:npm/fsevents@2.3.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "optional",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.1
+      }
+    },
+    {
+      "type": "library",
+      "name": "get-func-name",
+      "version": "2.0.2",
+      "purl": "pkg:npm/get-func-name@2.0.2",
+      "bom-ref": "pkg:npm/get-func-name@2.0.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "get-stream",
+      "version": "8.0.1",
+      "purl": "pkg:npm/get-stream@8.0.1",
+      "bom-ref": "pkg:npm/get-stream@8.0.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "human-signals",
+      "version": "5.0.0",
+      "purl": "pkg:npm/human-signals@5.0.0",
+      "bom-ref": "pkg:npm/human-signals@5.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "is-stream",
+      "version": "3.0.0",
+      "purl": "pkg:npm/is-stream@3.0.0",
+      "bom-ref": "pkg:npm/is-stream@3.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "isexe",
+      "version": "2.0.0",
+      "purl": "pkg:npm/isexe@2.0.0",
+      "bom-ref": "pkg:npm/isexe@2.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "js-tokens",
+      "version": "9.0.1",
+      "purl": "pkg:npm/js-tokens@9.0.1",
+      "bom-ref": "pkg:npm/js-tokens@9.0.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "json-schema-traverse",
+      "version": "1.0.0",
+      "purl": "pkg:npm/json-schema-traverse@1.0.0",
+      "bom-ref": "pkg:npm/json-schema-traverse@1.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "local-pkg",
+      "version": "0.5.1",
+      "purl": "pkg:npm/local-pkg@0.5.1",
+      "bom-ref": "pkg:npm/local-pkg@0.5.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "loupe",
+      "version": "2.3.7",
+      "purl": "pkg:npm/loupe@2.3.7",
+      "bom-ref": "pkg:npm/loupe@2.3.7",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "magic-string",
+      "version": "0.30.21",
+      "purl": "pkg:npm/magic-string@0.30.21",
+      "bom-ref": "pkg:npm/magic-string@0.30.21",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "make-error",
+      "version": "1.3.6",
+      "purl": "pkg:npm/make-error@1.3.6",
+      "bom-ref": "pkg:npm/make-error@1.3.6",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "merge-stream",
+      "version": "2.0.0",
+      "purl": "pkg:npm/merge-stream@2.0.0",
+      "bom-ref": "pkg:npm/merge-stream@2.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "mimic-fn",
+      "version": "4.0.0",
+      "purl": "pkg:npm/mimic-fn@4.0.0",
+      "bom-ref": "pkg:npm/mimic-fn@4.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "mlly",
+      "version": "1.8.2",
+      "purl": "pkg:npm/mlly@1.8.2",
+      "bom-ref": "pkg:npm/mlly@1.8.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "mlly/node_modules/pathe",
+      "version": "2.0.3",
+      "purl": "pkg:npm/mlly%2Fnode_modules%2Fpathe@2.0.3",
+      "bom-ref": "pkg:npm/mlly%2Fnode_modules%2Fpathe@2.0.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "ms",
+      "version": "2.1.3",
+      "purl": "pkg:npm/ms@2.1.3",
+      "bom-ref": "pkg:npm/ms@2.1.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "nanoid",
+      "version": "3.3.11",
+      "purl": "pkg:npm/nanoid@3.3.11",
+      "bom-ref": "pkg:npm/nanoid@3.3.11",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "npm-run-path",
+      "version": "5.3.0",
+      "purl": "pkg:npm/npm-run-path@5.3.0",
+      "bom-ref": "pkg:npm/npm-run-path@5.3.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "npm-run-path/node_modules/path-key",
+      "version": "4.0.0",
+      "purl": "pkg:npm/npm-run-path%2Fnode_modules%2Fpath-key@4.0.0",
+      "bom-ref": "pkg:npm/npm-run-path%2Fnode_modules%2Fpath-key@4.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "onetime",
+      "version": "6.0.0",
+      "purl": "pkg:npm/onetime@6.0.0",
+      "bom-ref": "pkg:npm/onetime@6.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "p-limit",
+      "version": "5.0.0",
+      "purl": "pkg:npm/p-limit@5.0.0",
+      "bom-ref": "pkg:npm/p-limit@5.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "path-key",
+      "version": "3.1.1",
+      "purl": "pkg:npm/path-key@3.1.1",
+      "bom-ref": "pkg:npm/path-key@3.1.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "pathe",
+      "version": "1.1.2",
+      "purl": "pkg:npm/pathe@1.1.2",
+      "bom-ref": "pkg:npm/pathe@1.1.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "pathval",
+      "version": "1.1.1",
+      "purl": "pkg:npm/pathval@1.1.1",
+      "bom-ref": "pkg:npm/pathval@1.1.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "picocolors",
+      "version": "1.1.1",
+      "purl": "pkg:npm/picocolors@1.1.1",
+      "bom-ref": "pkg:npm/picocolors@1.1.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "pkg-types",
+      "version": "1.3.1",
+      "purl": "pkg:npm/pkg-types@1.3.1",
+      "bom-ref": "pkg:npm/pkg-types@1.3.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "pkg-types/node_modules/pathe",
+      "version": "2.0.3",
+      "purl": "pkg:npm/pkg-types%2Fnode_modules%2Fpathe@2.0.3",
+      "bom-ref": "pkg:npm/pkg-types%2Fnode_modules%2Fpathe@2.0.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "postcss",
+      "version": "8.5.12",
+      "purl": "pkg:npm/postcss@8.5.12",
+      "bom-ref": "pkg:npm/postcss@8.5.12",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "pretty-format",
+      "version": "29.7.0",
+      "purl": "pkg:npm/pretty-format@29.7.0",
+      "bom-ref": "pkg:npm/pretty-format@29.7.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "react-is",
+      "version": "18.3.1",
+      "purl": "pkg:npm/react-is@18.3.1",
+      "bom-ref": "pkg:npm/react-is@18.3.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "require-from-string",
+      "version": "2.0.2",
+      "purl": "pkg:npm/require-from-string@2.0.2",
+      "bom-ref": "pkg:npm/require-from-string@2.0.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "required",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 1
+      }
+    },
+    {
+      "type": "library",
+      "name": "rollup",
+      "version": "4.60.2",
+      "purl": "pkg:npm/rollup@4.60.2",
+      "bom-ref": "pkg:npm/rollup@4.60.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "shebang-command",
+      "version": "2.0.0",
+      "purl": "pkg:npm/shebang-command@2.0.0",
+      "bom-ref": "pkg:npm/shebang-command@2.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "shebang-regex",
+      "version": "3.0.0",
+      "purl": "pkg:npm/shebang-regex@3.0.0",
+      "bom-ref": "pkg:npm/shebang-regex@3.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "siginfo",
+      "version": "2.0.0",
+      "purl": "pkg:npm/siginfo@2.0.0",
+      "bom-ref": "pkg:npm/siginfo@2.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "signal-exit",
+      "version": "4.1.0",
+      "purl": "pkg:npm/signal-exit@4.1.0",
+      "bom-ref": "pkg:npm/signal-exit@4.1.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "source-map-js",
+      "version": "1.2.1",
+      "purl": "pkg:npm/source-map-js@1.2.1",
+      "bom-ref": "pkg:npm/source-map-js@1.2.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "stackback",
+      "version": "0.0.2",
+      "purl": "pkg:npm/stackback@0.0.2",
+      "bom-ref": "pkg:npm/stackback@0.0.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "std-env",
+      "version": "3.10.0",
+      "purl": "pkg:npm/std-env@3.10.0",
+      "bom-ref": "pkg:npm/std-env@3.10.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "strip-final-newline",
+      "version": "3.0.0",
+      "purl": "pkg:npm/strip-final-newline@3.0.0",
+      "bom-ref": "pkg:npm/strip-final-newline@3.0.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "strip-literal",
+      "version": "2.1.1",
+      "purl": "pkg:npm/strip-literal@2.1.1",
+      "bom-ref": "pkg:npm/strip-literal@2.1.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "tinybench",
+      "version": "2.9.0",
+      "purl": "pkg:npm/tinybench@2.9.0",
+      "bom-ref": "pkg:npm/tinybench@2.9.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "tinypool",
+      "version": "0.8.4",
+      "purl": "pkg:npm/tinypool@0.8.4",
+      "bom-ref": "pkg:npm/tinypool@0.8.4",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "tinyspy",
+      "version": "2.2.1",
+      "purl": "pkg:npm/tinyspy@2.2.1",
+      "bom-ref": "pkg:npm/tinyspy@2.2.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "ts-node",
+      "version": "10.9.2",
+      "purl": "pkg:npm/ts-node@10.9.2",
+      "bom-ref": "pkg:npm/ts-node@10.9.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "type-detect",
+      "version": "4.1.0",
+      "purl": "pkg:npm/type-detect@4.1.0",
+      "bom-ref": "pkg:npm/type-detect@4.1.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "typescript",
+      "version": "5.9.3",
+      "purl": "pkg:npm/typescript@5.9.3",
+      "bom-ref": "pkg:npm/typescript@5.9.3",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "ufo",
+      "version": "1.6.4",
+      "purl": "pkg:npm/ufo@1.6.4",
+      "bom-ref": "pkg:npm/ufo@1.6.4",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "undici-types",
+      "version": "6.21.0",
+      "purl": "pkg:npm/undici-types@6.21.0",
+      "bom-ref": "pkg:npm/undici-types@6.21.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "v8-compile-cache-lib",
+      "version": "3.0.1",
+      "purl": "pkg:npm/v8-compile-cache-lib@3.0.1",
+      "bom-ref": "pkg:npm/v8-compile-cache-lib@3.0.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "vite",
+      "version": "5.4.21",
+      "purl": "pkg:npm/vite@5.4.21",
+      "bom-ref": "pkg:npm/vite@5.4.21",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "vite-node",
+      "version": "1.6.1",
+      "purl": "pkg:npm/vite-node@1.6.1",
+      "bom-ref": "pkg:npm/vite-node@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "vitest",
+      "version": "1.6.1",
+      "purl": "pkg:npm/vitest@1.6.1",
+      "bom-ref": "pkg:npm/vitest@1.6.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "which",
+      "version": "2.0.2",
+      "purl": "pkg:npm/which@2.0.2",
+      "bom-ref": "pkg:npm/which@2.0.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "why-is-node-running",
+      "version": "2.3.0",
+      "purl": "pkg:npm/why-is-node-running@2.3.0",
+      "bom-ref": "pkg:npm/why-is-node-running@2.3.0",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "yn",
+      "version": "3.1.1",
+      "purl": "pkg:npm/yn@3.1.1",
+      "bom-ref": "pkg:npm/yn@3.1.1",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    },
+    {
+      "type": "library",
+      "name": "yocto-queue",
+      "version": "1.2.2",
+      "purl": "pkg:npm/yocto-queue@1.2.2",
+      "bom-ref": "pkg:npm/yocto-queue@1.2.2",
+      "reasonCode": "NO_KNOWN_VULNERABILITY",
+      "scope": "excluded",
+      "vulnerabilities": [],
+      "properties": [
+        {
+          "name": "ar:reasonCode",
+          "value": "NO_KNOWN_VULNERABILITY"
+        }
+      ],
+      "arTriage": {
+        "riskTier": "Acceptable",
+        "rationale": "No known vulnerabilities in current OSV data",
+        "reachabilityWeight": 0.2
+      }
+    }
+  ]
+}

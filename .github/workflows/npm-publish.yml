@@ -1,0 +1,83 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'beta/v*'
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    name: Verify & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  publish:
+    name: Publish to npm
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.detect.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+
+      - id: detect
+        run: |
+          if [[ ${{ github.ref_type }} == "tag" ]]; then
+            TAG="${github.ref_name}"
+          else
+            TAG="${GITHUB_REF_NAME:-}"
+          fi
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "Detected tag: $TAG"
+
+      - name: Publish beta
+        if: startsWith(steps.detect.outputs.tag, 'beta/v')
+        run: npm publish --tag beta --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish stable
+        if: startsWith(steps.detect.outputs.tag, 'v') && !startsWith(steps.detect.outputs.tag, 'beta/v')
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Fail on unknown tag format
+        if: steps.detect.outputs.tag != '' && !startsWith(steps.detect.outputs.tag, 'v')
+        run: |
+          echo "Unknown tag format: ${{ steps.detect.outputs.tag }}"
+          echo "Expected 'v*' or 'beta/v*' — refusing to publish"
+          exit 1
+
+  release:
+    name: Create GitHub Release
+    needs: publish
+    runs-on: ubuntu-latest
+    if: startsWith(needs.publish.outputs.tag, 'v') && !startsWith(needs.publish.outputs.tag, 'beta/v')
+    permissions:
+      contents: write
+    steps:
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

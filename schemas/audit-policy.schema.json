@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "audit-policy.schema.json",
+  "title": "Audit-Ready Policy Configuration",
+  "description": "Schema for .audit-policy.json — defines fail-on reason codes and security exceptions",
+  "type": "object",
+  "properties": {
+    "failOn": {
+      "type": "array",
+      "description": "ReasonCode values that should cause a non-zero exit. If omitted, no code triggers a failure.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "DEV_DEPENDENCY_ONLY",
+          "OPTIONAL_DEPENDENCY",
+          "TRANSITIVE_NO_EXPLOIT",
+          "DIRECT_UNPATCHED",
+          "NO_KNOWN_VULNERABILITY",
+          "EXEMPTED"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "exceptions": {
+      "type": "array",
+      "description": "Time-bounded security exceptions that suppress matching triage violations.",
+      "items": {
+        "type": "object",
+        "required": ["id", "purl", "reasonCode", "reason", "expires_at", "approved_by"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this exception record"
+          },
+          "purl": {
+            "type": "string",
+            "description": "Package URL this exception applies to — must match the package's purl exactly"
+          },
+          "reasonCode": {
+            "type": "string",
+            "enum": [
+              "DEV_DEPENDENCY_ONLY",
+              "OPTIONAL_DEPENDENCY",
+              "TRANSITIVE_NO_EXPLOIT",
+              "DIRECT_UNPATCHED",
+              "NO_KNOWN_VULNERABILITY",
+              "EXEMPTED"
+            ],
+            "description": "The reasonCode this exception suppresses. Must match the node's current reasonCode."
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 20,
+            "description": "Human-readable justification for this exception. Minimum 20 characters. Must be a specific technical explanation."
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp after which this exception is ignored"
+          },
+          "approved_by": {
+            "type": "string",
+            "description": "Name or identifier of the approving party (team, individual, or ticket reference)"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
