@@ -41,11 +41,7 @@ jobs:
 
       - id: detect
         run: |
-          if [[ ${{ github.ref_type }} == "tag" ]]; then
-            TAG="${github.ref_name}"
-          else
-            TAG="${GITHUB_REF_NAME:-}"
-          fi
+          TAG="${{ github.ref_name }}"
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "Detected tag: $TAG"
 
