@@ -1,8 +1,8 @@
 # Audit-Ready SBOM Kit
 
 
-[![npm version](https://img.shields.io/npm/v/audit-ready.svg)](https://www.npmjs.com/package/audit-ready)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/audit-ready.svg)](https://www.npmjs.com/package/audit-ready)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 [![Node.js Version](https://img.shields.io/node/v/audit-ready.svg)](https://nodejs.org)
 
 > Generate a CycloneDX SBOM and deterministic, audit-ready risk report from your package-lock.json.
@@ -72,10 +72,6 @@ npm install -g audit-ready@beta
 
 # Or run without install
 npx audit-ready@beta scan --help
-
----
-
-
 ⚡ Quick Start (1 min)
 # 1. Dry run (no network / no writes)
 npx audit-ready scan --dry-run
@@ -88,10 +84,7 @@ npx audit-ready scan \
   --policy .audit-policy.json \
   --fail-on DIRECT_UNPATCHED
 
----
-
-
-## 4. Validate config
+# 4. Validate config
 npx audit-ready validate-config
 🧠 What it does
 Parses package-lock.json (v1 / v2 / v3)
@@ -103,10 +96,6 @@ sbom.json (CycloneDX 1.5)
 audit-report.md
 results.sarif (optional)
 Supports time-bound exceptions via .audit-policy.json
-
----
-
-
 🔒 Rules-Based Determinism
 
 Same package-lock.json → identical output. Every time.
@@ -119,10 +108,6 @@ There is no randomness, no hidden state, and no probabilistic scoring.
 🔁 Same input = same output (reproducible across CI)
 📜 Rule order defines outcome (no scoring, no ambiguity)
 🧾 Every result has a reasonCode
-
----
-
-
 ⚙️ How triage works
 
 Each dependency is evaluated against an ordered rule set:
@@ -143,48 +128,33 @@ no dynamic sorting
 
 The array order is the logic.
 
----
-
 🧾 reasonCode as the source of truth
 
 Every component receives exactly one reasonCode.
 
----
-
-## 🧯 Exceptions (Phase 2)
+🧯 Exceptions (Phase 2)
 applyTriage() → assigns base reasonCode  
 applyExceptions() → may override to EXEMPTED
 
 Still fully deterministic given the same inputs.
 
----
-
-## 🧪 Determinism enforcement
+🧪 Determinism enforcement
 Source is statically scanned for:
 Date
 Math.random()
 process.env
 Build fails if any are found
-
----
-
-## 📊 Risk tier (separate from reasonCode)
+📊 Risk tier (separate from reasonCode)
 Critical / NeedsReview / Acceptable
 Does not affect reasonCode
 Used only for reporting clarity
-
----
-
-## 🧩 Core Concepts
+🧩 Core Concepts
 Concept	Docs
 reasonCode triage	docs/architecture.md
 Policy & exceptions	docs/policy-schema.md
 SARIF integration	docs/sarif-integration.md
 Network transparency	docs/transparency.md
-
----
-
-## 🛠️ Commands
+🛠️ Commands
 Command	Description
 audit-ready scan	Scan lockfile and generate reports
 --policy <path>	Load .audit-policy.json
@@ -196,10 +166,7 @@ audit-ready audit-exceptions	Fail on expired exceptions
 audit-ready validate-config	Validate config schema
 audit-ready --init	Create policy template
 --version / -V	Show version
-
----
-
-## 🏷️ reasonCode values
+🏷️ reasonCode values
 Code	Meaning
 DEV_DEPENDENCY_ONLY	Not shipped to production
 OPTIONAL_DEPENDENCY	Not installed by default
@@ -207,10 +174,7 @@ TRANSITIVE_NO_EXPLOIT	No known exploit path
 DIRECT_UNPATCHED	Direct dependency, no patch
 NO_KNOWN_VULNERABILITY	Clean
 EXEMPTED	Suppressed via exception
-
----
-
-## ⚙️ Configuration
+⚙️ Configuration
 
 All behavior is controlled via .audit-policy.json.
 
@@ -231,18 +195,12 @@ Precedence
 Field	Behavior
 failOn	CLI overrides file
 exceptions	Merged (additive)
-
----
-
-## 📤 Output
+📤 Output
 File	Description
 sbom.json	CycloneDX 1.5
 audit-report.md	Human-readable report
 results.sarif	GitHub Security integration
-
----
-
-## 🔄 CI/CD Examples
+🔄 CI/CD Examples
 Pre-commit gate
 - name: audit-ready scan
   run: npx audit-ready scan --dry-run --fail-on DIRECT_UNPATCHED
@@ -264,9 +222,7 @@ GitHub Advanced Security (SARIF)
 
 Findings appear in Code scanning alerts, grouped by reasonCode.
 
----
-
-## 🧪 Beta Feedback
+🧪 Beta Feedback
 
 audit-ready is currently in beta testing.
 
@@ -279,9 +235,7 @@ We are specifically looking for:
 
 👉 https://github.com/neve7er/audit-ready/issues
 
----
-
-## 🧭 Roadmap
+🧭 Roadmap
 Phase	Status
 Phase 1 — Core triage & SBOM	✅
 Phase 2 — Policy & exceptions	✅
@@ -293,18 +247,15 @@ Planned after Phase 3:
 Caching support
 Performance improvements
 Stabilized rule system
-
----
-
-# 📚 Docs
+📚 Docs
 File	Audience
 docs/architecture.md	Architects
 docs/policy-schema.md	Security teams
 docs/sarif-integration.md	DevOps
 docs/transparency.md	Compliance
-# 👥 Contributors
+👥 Contributors
 neve7er
 Claude (Anthropic)
-# 📄 License
+📄 License
 
 MIT © 2025 neve7er
