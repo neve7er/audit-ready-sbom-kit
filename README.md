@@ -66,3 +66,21 @@ npm install -g audit-ready@beta
 
 # Or run without install
 npx audit-ready@beta scan --
+
+---
+
+⚡ Quick Start (1 min)
+# 1. Dry run (no network / no writes)
+npx audit-ready scan --dry-run
+
+# 2. Generate policy template
+npx audit-ready --init
+
+# 3. Run with enforcement
+npx audit-ready scan \
+  --policy .audit-policy.json \
+  --fail-on DIRECT_UNPATCHED
+
+# 4. Validate config
+npx audit-ready validate-config
+
