@@ -132,7 +132,7 @@ test/
 - **Offline mode**: Exit code 2 on OSV unavailability.
 - **Monorepo**: Single lockfile per invocation.
 - **reasonCode Primacy**: Every Component output MUST carry a reasonCode field as the primary auditable justification. Human-readable rationale is supplemental.
-- **Deterministic-Only**: ALL classification logic in Phase 1 MUST be deterministic rule-based. Zero tolerance for probabilistic scoring or ML inference.
+- **Deterministic-Only**: ALL classification logic in Phase 1 MUST be deterministic rule-based. Zero tolerance for probabilistic scoring or ML inference. _See [docs/determinism.md](determinism.md) for the full explanation of the rule engine, reasonCode priority table, and the static source-scan test._
 - **Immutable Data**: ALL data model fields and arrays in `src/core/sbom/cyclonedx/model.ts` MUST be declared `readonly`.
 - **Schema-First**: ALL CycloneDX 1.5 JSON output MUST validate against `schemas/cyclonedx-1.5.schema.json` before write.
 
