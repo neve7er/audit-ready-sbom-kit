@@ -47,8 +47,6 @@ Most vulnerability scanners tell you **what is wrong**.
 
 ### ⚠️ Beta Limitations
 
-Current beta (Phase 2) has the following limitations:
-
 | Limitation | Status |
 |------------|--------|
 | Caching | ❌ Not yet (planned in Phase 3) |
@@ -56,10 +54,7 @@ Current beta (Phase 2) has the following limitations:
 | Package managers | ❌ npm only (yarn/pnpm not supported) |
 | Private registries | ❌ Not fully tested |
 
-> 💡 **Tip**: If you use yarn or pnpm, generate a compatible lockfile without modifying `node_modules`:
-> ```bash
-> npm install --package-lock-only
-> ```
+> 💡 **Tip**: If you use yarn or pnpm, run `npm install --package-lock-only` to generate a compatible lockfile.
 
 ---
 
@@ -111,7 +106,7 @@ Same package-lock.json → identical output. Every time.
 audit-ready uses a fully deterministic, rule-based triage engine.
 There is no randomness, no hidden state, and no probabilistic scoring.
 
-🧠 Core guarantees
+Core guarantees
 Guarantee	Description
 🧩 Pure functions only	No Date, no Math.random(), no environment variables
 🔁 Same input = same output	Reproducible across machines and CI
@@ -132,17 +127,7 @@ DIRECT_UNPATCHED
 
 👉 First match wins — evaluation stops immediately.
 
-No tie-breaking
-
-No priority field
-
-No dynamic sorting
-
-The array order is the logic.
-
-🧾 reasonCode as the source of truth
-Every component receives exactly one reasonCode:
-
+reasonCode values
 Code	Meaning
 DEV_DEPENDENCY_ONLY	Not shipped to production
 OPTIONAL_DEPENDENCY	Not installed by default
@@ -150,13 +135,7 @@ TRANSITIVE_NO_EXPLOIT	No known exploit path
 DIRECT_UNPATCHED	Direct dependency, no patch
 NO_KNOWN_VULNERABILITY	Clean
 EXEMPTED	Suppressed via exception
-🧯 Exceptions (Phase 2)
-text
-applyTriage()     → assigns base reasonCode
-applyExceptions() → may override to EXEMPTED
-Still fully deterministic given the same inputs.
-
-🔍 Why this matters
+Why this matters
 CI decisions are predictable
 
 Results are diffable
@@ -200,9 +179,9 @@ failOn	CLI overrides file
 exceptions	Merged (additive)
 📤 Output
 File	Description
-sbom.json	CycloneDX 1.5
+sbom.json	CycloneDX 1.5 (schema-validated)
 audit-report.md	Human-readable report
-results.sarif	GitHub Security integration
+results.sarif	SARIF 2.1.0 for GitHub Security
 🔄 CI/CD Examples
 Pre-commit gate
 yaml
@@ -227,11 +206,9 @@ yaml
 Findings appear in Code scanning alerts, grouped by reasonCode.
 
 🧪 Beta Feedback
-audit-ready is currently in beta testing.
-
 We are specifically looking for:
 
-🐛 Bug reports (incorrect triage, crashes, edge cases)
+🐛 Bug reports
 
 📦 Real-world dependency trees
 
@@ -243,28 +220,19 @@ We are specifically looking for:
 
 🧭 Roadmap
 Phase	Status
-Phase 1 — Core triage & SBOM	✅ Complete
-Phase 2 — Policy & exceptions	✅ Complete
-Phase 3 — Caching & performance	🚧 In progress
-🎯 Production Release
-Planned after Phase 3:
-
-Caching support
-
-Performance improvements
-
-Stabilized rule system
-
+Phase 1 — Core triage & SBOM	✅
+Phase 2 — Policy & exceptions	✅
+Phase 3 — Caching & performance	🚧
 📚 Documentation
 File	Audience
-docs/architecture.md	Architects, CI/CD maintainers
+docs/architecture.md	Architects
 docs/policy-schema.md	Security teams
 docs/sarif-integration.md	DevOps
 docs/transparency.md	Compliance
 👥 Contributors
 neve7er - Creator & Maintainer
 
-Claude by Anthropic - Code review, architecture design, debugging assistance, documentation
+Claude (Anthropic) - AI assistance
 
 📄 License
 MIT © 2025 neve7er
