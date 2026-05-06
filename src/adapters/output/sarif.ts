@@ -77,6 +77,7 @@ const SARIF_LEVEL: Record<ReasonCode, string | null> = {
   [R.DIRECT_UNPATCHED]: 'error',
   [R.EXEMPTED]: 'note',
   [R.NO_KNOWN_VULNERABILITY]: null,
+  [R.DEPRECATED_PACKAGE]: 'note',
 };
 
 const JUSTIFICATION_TEXT: Record<ReasonCode, string> = {
@@ -85,7 +86,8 @@ const JUSTIFICATION_TEXT: Record<ReasonCode, string> = {
   [R.TRANSITIVE_NO_EXPLOIT]: 'Transitive dependency with limited exploitability in current context',
   [R.DIRECT_UNPATCHED]: 'Direct dependency with active vulnerability requiring remediation',
   [R.EXEMPTED]: 'Vulnerability suppressed by a valid, non-expired security exception',
-  [R.NO_KNOWN_VULNERABILITY]: 'No known vulnerabilities in current OSV data'
+  [R.NO_KNOWN_VULNERABILITY]: 'No known vulnerabilities in current OSV data',
+  [R.DEPRECATED_PACKAGE]: 'Package is officially deprecated in the npm registry — no longer maintained'
 };
 
 const TOOL_DRIVER_NAME = 'audit-ready-sbom-kit';

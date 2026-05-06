@@ -66,3 +66,10 @@ export class ExpiredExceptionError extends AuditReadyError {
     );
   }
 }
+
+/** Error thrown when mutually exclusive CLI flags are used together */
+export class ConflictingFlagsError extends AuditReadyError {
+  constructor(flags: string) {
+    super(`Conflicting flags: ${flags}`);
+  }
+}

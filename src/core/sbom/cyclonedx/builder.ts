@@ -46,7 +46,8 @@ const VEX_STATE_MAP: Record<ReasonCode, string> = {
   [R.TRANSITIVE_NO_EXPLOIT]: 'in_triage',
   [R.DIRECT_UNPATCHED]: 'affected',
   [R.EXEMPTED]: 'not_affected',
-  [R.NO_KNOWN_VULNERABILITY]: '' // Omit from VEX
+  [R.NO_KNOWN_VULNERABILITY]: '',
+  [R.DEPRECATED_PACKAGE]: 'not_affected',
 };
 
 /** Map reasonCode to human-readable justification text */
@@ -56,7 +57,8 @@ const JUSTIFICATION_TEXT: Record<ReasonCode, string> = {
   [R.TRANSITIVE_NO_EXPLOIT]: 'Transitive dependency with no known exploit in current context',
   [R.DIRECT_UNPATCHED]: 'Direct dependency with known unpatched vulnerability',
   [R.EXEMPTED]: 'Vulnerability suppressed by a valid, non-expired security exception. See exception reason in SBOM metadata.',
-  [R.NO_KNOWN_VULNERABILITY]: 'No known vulnerabilities in current OSV data'
+  [R.NO_KNOWN_VULNERABILITY]: 'No known vulnerabilities in current OSV data',
+  [R.DEPRECATED_PACKAGE]: 'Package is officially deprecated in the npm registry — no longer maintained',
 };
 
 /** Map reasonCode to risk tier */
@@ -66,7 +68,8 @@ const RISK_TIER_MAP: Record<ReasonCode, RiskTier> = {
   [R.TRANSITIVE_NO_EXPLOIT]: 'NeedsReview',
   [R.DIRECT_UNPATCHED]: 'Critical',
   [R.EXEMPTED]: 'Acceptable',
-  [R.NO_KNOWN_VULNERABILITY]: 'Acceptable'
+  [R.NO_KNOWN_VULNERABILITY]: 'Acceptable',
+  [R.DEPRECATED_PACKAGE]: 'NeedsReview'
 };
 
 /** Map reasonCode to rationale text */
@@ -76,7 +79,8 @@ const RATIONALE_MAP: Record<ReasonCode, string> = {
   [R.TRANSITIVE_NO_EXPLOIT]: 'Transitive dependency with vulnerability but limited exploitability',
   [R.DIRECT_UNPATCHED]: 'Direct dependency with active vulnerability requiring remediation',
   [R.EXEMPTED]: 'Under security exception — see SBOM for exception details', // Runtime value replaced in buildVexEntries
-  [R.NO_KNOWN_VULNERABILITY]: 'No known vulnerabilities in current OSV data'
+  [R.NO_KNOWN_VULNERABILITY]: 'No known vulnerabilities in current OSV data',
+  [R.DEPRECATED_PACKAGE]: 'Package is officially deprecated in the npm registry — no longer maintained'
 };
 
 // =========================================================================

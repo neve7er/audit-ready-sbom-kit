@@ -1,10 +1,6 @@
 /**
  * Audit-Ready SBOM Kit CLI entry point.
  * Uses Commander for argument parsing and command routing.
- *
- * This module can be required from the bin wrapper (bin/audit-ready.js) without
- * triggering argument parsing at require-time — program.parse() only runs when
- * this is the main entry point (detected via import.meta.url).
  */
 
 import { fileURLToPath } from 'url';
@@ -15,13 +11,23 @@ import { auditSelfCommand } from './commands/audit-self.js';
 import { auditExceptionsCommand } from './commands/audit-exceptions.js';
 import { initCommand } from './commands/init.js';
 import { validateConfigCommand } from './commands/validate-config.js';
-import { parseScanOptions } from './parser.js';
+import { parseScanOptions, cacheClear } from './parser.js';
+import { ConflictingFlagsError } from '../utils/errors.js';
 
 const program = new Command('audit-ready');
 
 program
   .description('Generate CycloneDX SBOM and audit-ready risk triage reports')
-  .version('0.1.0-beta.2');
+  .version('0.1.0-beta.3');
+
+// Standalone flags handled before any subcommand
+// --cache-clear: wipe cache and exit 0 immediately, no scan
+const cacheArgs = process.argv.filter(
+  (a) => a === '--cache-clear' || a === 'cache-clear',
+);
+if (cacheArgs.includes('--cache-clear') || cacheArgs.includes('cache-clear')) {
+  await cacheClear();
+}
 
 program
   .command('scan')
@@ -32,16 +38,37 @@ program
   .option('--fail-on <codes>', 'Comma-separated ReasonCode values that should fail the build')
   .option('--dry-run', 'Simulate scan without writing output files or making network calls', false)
   .option('--output-sarif <path>', 'Write SARIF 2.1.0 report to the specified path')
-  .action(async () => {
-    const parsed = parseScanOptions(process.argv);
-    await scanCommand({
-      lockfile: parsed.lockfile,
-      pkgJson: parsed.pkgJson,
-      failOn: parsed.failOn,
-      dryRun: parsed.dryRun,
-      outputSarif: parsed.outputSarif,
-      policyPath: parsed.policyPath,
-    });
+  .option('--offline', 'Block all network calls — exit 2 if a required cache entry is missing')
+  .option('--force-refresh', 'Skip cache reads; fetch fresh data and overwrite cache with results')
+  .option('--cache-ttl <hours>', 'Override the 24h cache TTL for this invocation (must be > 0)')
+  .action(async (cmd) => {
+    try {
+      // parseScanOptions handles validation (including ConflictingFlagsError).
+      // `now` is created once at this top-level call and threaded through all
+      // time-dependent logic so tests can inject an arbitrary clock.
+      const parsed = parseScanOptions(process.argv);
+      await scanCommand({
+        // Subset of ScanOptions — scan.ts only reads what it needs
+        lockfile: parsed.lockfile,
+        pkgJson: parsed.pkgJson,
+        failOn: parsed.failOn,
+        dryRun: parsed.dryRun,
+        outputSarif: parsed.outputSarif,
+        policyPath: parsed.policyPath,
+        // New cache-oriented options
+        offline: parsed.offline,
+        forceRefresh: parsed.forceRefresh,
+        ttlOverrideMs: parsed.ttlOverrideMs,
+        now: parsed.now,
+      });
+    } catch (err) {
+      if (err instanceof ConflictingFlagsError) {
+        console.error(`Error: ${err.message}`);
+        process.exit(1);
+      }
+      // Re-throw for the scan command's own error handling
+      throw err;
+    }
   });
 
 program
@@ -79,9 +106,7 @@ if (initFlag) {
   process.exit(0);
 }
 
-// Only parse when this module is the main entry point — not when required by bin/audit-ready.js
-// fileURLToPath normalizes file:///C:/... → C:\... on Windows so it compares reliably against
-// resolve(process.argv[1]) which already returns OS-native path format.
+// Only parse when this module is the main entry point
 const isMain = fileURLToPath(import.meta.url) === resolve(process.argv[1]);
 if (isMain) {
   program.parse();

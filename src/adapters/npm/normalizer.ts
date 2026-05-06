@@ -26,7 +26,8 @@ function makeNode(
   version: string,
   dev: boolean,
   optional: boolean,
-  isDirect: boolean
+  isDirect: boolean,
+  deprecated?: string,
 ): PackageNode {
   const purl = buildPurl(name, version);
   const scope: ComponentScope = optional
@@ -50,6 +51,8 @@ function makeNode(
     scope,
     vulnerabilities: Object.freeze([]),
     isDirect,
+    // Strip empty-string deprecation fields so the property is undefined
+    ...(deprecated ? { deprecated } : {}),
   });
 }
 
@@ -62,6 +65,8 @@ interface V1Dep {
   dev?: boolean;
   optional?: boolean;
   dependencies?: Record<string, V1Dep>;
+  /** npm v1/v2: deprecation message stored on the dependency node */
+  deprecated?: string;
 }
 
 export function normalizeV1(lockfile: { lockfileVersion: 1; dependencies?: Record<string, V1Dep> }): readonly PackageNode[] {
@@ -75,7 +80,7 @@ export function normalizeV1(lockfile: { lockfileVersion: 1; dependencies?: Recor
       if (!dep?.version) continue;
       if (seen.has(buildPurl(name, dep.version))) continue;
       seen.add(buildPurl(name, dep.version));
-      nodes.push(makeNode(name, dep.version, dep.dev ?? false, dep.optional ?? false, direct));
+      nodes.push(makeNode(name, dep.version, dep.dev ?? false, dep.optional ?? false, direct, dep.deprecated || undefined));
       if (dep.dependencies) walk(dep.dependencies, false);
     }
   }
@@ -93,6 +98,8 @@ interface V2Entry {
   version?: string;
   dev?: boolean;
   optional?: boolean;
+  /** npm v2/v3: deprecation message stored alongside the package entry */
+  deprecated?: string;
 }
 
 export function normalizeV2(lockfile: { lockfileVersion: 2; packages: Record<string, V2Entry> }): readonly PackageNode[] {
@@ -109,7 +116,7 @@ export function normalizeV2(lockfile: { lockfileVersion: 2; packages: Record<str
     // Transitive if nested deeper (e.g. node_modules/pkg/node_modules/nested)
     const isDirect = deriveIsDirect(path);
 
-    nodes.push(makeNode(name, entry.version, entry.dev ?? false, entry.optional ?? false, isDirect));
+    nodes.push(makeNode(name, entry.version, entry.dev ?? false, entry.optional ?? false, isDirect, entry.deprecated || undefined));
   }
 
   return freeze(nodes);
@@ -124,6 +131,8 @@ interface V3Entry {
   version?: string;
   dev?: boolean;
   optional?: boolean;
+  /** npm v2/v3: deprecation message stored alongside the package entry */
+  deprecated?: string;
 }
 
 export function normalizeV3(lockfile: { lockfileVersion: 3; packages: Record<string, V3Entry> }): readonly PackageNode[] {
@@ -138,7 +147,7 @@ export function normalizeV3(lockfile: { lockfileVersion: 3; packages: Record<str
 
     const isDirect = deriveIsDirect(path);
 
-    nodes.push(makeNode(name, entry.version, entry.dev ?? false, entry.optional ?? false, isDirect));
+    nodes.push(makeNode(name, entry.version, entry.dev ?? false, entry.optional ?? false, isDirect, entry.deprecated || undefined));
   }
 
   return freeze(nodes);

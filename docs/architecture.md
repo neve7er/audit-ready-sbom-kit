@@ -1,9 +1,20 @@
 # Audit-Ready SBOM Kit — Architecture of Record
 > This document is the single source of truth for all technical decisions. All changes must be reviewed against this spec.
-> Last updated: 2026-05-03
+> Last updated: 2026-05-05
 
-## Core Mission
-A local-first CLI tool (`npx audit-ready scan`) that generates CycloneDX 1.5 SBOM and audit-ready risk triage reports from package-lock.json. Key innovation: reachability-based "Excuse Generator" for justifying vulnerability waivers.
+## Product Philosophy
+
+**audit-ready is not just a vulnerability scanner.** It is an **audit trail platform** that links two artifacts — a CycloneDX SBOM and machine-readable `reasonCode` verdicts — to prove to auditors that the organization's security operations are controlled and version-tracked like code.
+
+The core premise: every vulnerability finding exists in the context of a decision. Who decided it was acceptable? What was the justification? When does the exception expire? Without a tool that captures that decision chain, audits devolve into retrospective guesswork. With audit-ready, they become a matter of presenting a git history and a JSON file.
+
+Key commitments:
+
+- **Deterministic** — If the input is the same, it always produces exactly the same output. Bit for bit, every time.
+- **Immutable** — All data models are `readonly`. Configuration changes are recorded as Git history, not applied in-place.
+- **Audit-first** — The tool persists not just scan results, but the decision process: reason, approver, and deadline for every exception. Auditors receive a log, not a snapshot.
+
+---
 
 ## Architecture Overview
 
@@ -22,397 +33,342 @@ G --> I[audit-report.md]
 H --> J[sbom.json]
 ```
 
-### Core Principles
-- **Adapter Pattern**: Decouple parser → vuln-db → output.
-- **CycloneDX as Canonical**: JSON is the artifact. Markdown is for humans.
-- **Opinionated Defaults**: No config by default — override only via .auditrc.json.
-- **Local First**: Only OSV lookups hit the network. All else offline.
-- **No External Dependencies**: Pure TypeScript, no graph libraries.
-
-### Directory Structure (Immutable)
+### Directory Structure
 ```
 src/
 ├── cli/
 │ └── commands/
-│ └── scan.ts
+│ ├── scan.ts
+│ ├── init.ts
+│ ├── validate-config.ts
+│ ├── audit-self.ts
+│ └── audit-exceptions.ts
 ├── core/
 │ ├── sbom/
 │ │ ├── cyclonedx/
-│ │ │ ├── model.ts
+│ │ │ ├── model.ts          ← immutable data contracts
 │ │ │ ├── builder.ts
 │ │ │ ├── serializer.ts
-│ │ │ ├── validator.ts
-│ │ │ └── types.ts
+│ │ │ └── validator.ts
 │ │ └── index.ts
 │ ├── triage/
-│ │ ├── engine.ts
+│ │ ├── engine.ts            ← applyTriage, matchesFailPolicy
 │ │ ├── reachability.ts
-│ │ ├── rules/
-│ │ │ ├── default-rules.ts
-│ │ │ └── types.ts
-│ │ └── index.ts
-│ └── graph/
-│ ├── dependency-graph.ts
-│ └── types.ts
+│ │ └── rules/
+│ │     ├── default-rules.ts ← Object.freeze()d rule list
+│ │     └── types.ts
+│ ├── policy/
+│ │ ├── exceptions.ts        ← applyExceptions
+│ │ └── types.ts
+│ └── utils/
+│     └── purl.ts            ← RFC-compliant, no stdlib encoders
 ├── adapters/
 │ ├── npm/
-│ │ ├── parser.ts
-│ │ ├── lockfile-v1.ts
-│ │ ├── lockfile-v2.ts
-│ │ ├── lockfile-v3.ts
-│ │ ├── purl.ts
-│ │ ├── license-extractor.ts
-│ │ ├── resolver.ts
+│ │ ├── parser.ts, normalizer.ts, resolver.ts
+│ │ ├── lockfile-v1.ts, lockfile-v2.ts, lockfile-v3.ts
 │ │ └── types.ts
 │ ├── vuln-db/
-│ │ ├── osv-client.ts
+│ │ ├── osv-client.ts       ← only endpoint: api.osv.dev
 │ │ ├── osv-to-cyclonedx.ts
-│ │ ├── cache.ts
-│ │ └── types.ts
+│ │ └── cache.ts
 │ └── output/
-│ └── markdown/
-│ ├── renderer.ts
-│ ├── sections/
-│ │ ├── metadata.ts
-│ │ ├── risk-summary.ts
-│ │ ├── findings.ts
-│ │ ├── excuses.ts
-│ │ ├── top-fixes.ts
-│ │ └── limitations.ts
-│ └── index.ts
+│     ├── sarif.ts
+│     └── markdown/renderer.ts
 ├── config/
-│ ├── loader.ts
-│ ├── defaults.ts
-│ └── types.ts
-├── utils/
-│ ├── logger.ts
-│ ├── fs.ts
-│ └── errors.ts
-└── types/
-└── global.ts
+│ └── loader.ts
 
+.audit-history/              ← Phase 3: Git-committed scan snapshots
+.audit-policy.json           ← Team approval rules and exception list
 schemas/
 ├── cyclonedx-1.5.schema.json
-└── sarif-schema-2.1.0.json
-
-test/
-├── unit/
-│   ├── sarif.test.ts        ← P1
-│   └── policy.test.ts       ← P0
-├── integration/
-│   ├── e2e-scan.test.ts
-│   ├── pipeline.test.ts
-│   ├── fail-on.test.ts      ← P0
-│   └── sarif-output.test.ts ← P1
-├── contracts/
-│ └── osv-api.test.ts
-├── fixtures/
-│ ├── lockfiles/
-│ │ ├── npm-v1/
-│ │ ├── npm-v2/
-│ │ └── npm-v3/
-│ └── osv-responses/
-│ ├── single-vuln.json
-│ ├── multi-vuln.json
-│ ├── no-vulns.json
-│ └── paginated.json
-└── snapshots/
-├── expected-sbom-npm-v1.json
-├── expected-sbom-npm-v2.json
-├── expected-sbom-npm-v3.json
-└── expected-report.md
+├── sarif-schema-2.1.0.json
+└── audit-policy.schema.json
 ```
 
+---
+
+## Principles of Deterministic Architecture
+
+### 1. Deterministic
+Same `package-lock.json` and same tool version always produce identical output. This is enforced mechanically — not by convention:
+
+- A test in `test/unit/policy.test.ts` (lines 97–113) statically scans the source of every core function for banned tokens: `Date`, `Date.now()`, `Math.random()`, `process.env`. The build fails if any are found.
+- Every function in `src/core/` is a pure function: no I/O, no mutation, no global state.
+- `DEFAULT_RULES` is `Object.freeze()`d — the rule priority order cannot change at runtime.
+
+### 2. Immutable
+- All fields in `src/core/sbom/cyclonedx/model.ts` are `readonly`.
+- Every output object is `Object.freeze()`d at the boundary.
+- SBOM schema validation runs *before* a file is written. If validation fails, no file is written and the tool exits with code `1`.
+
+### 3. Audit-Ready
+The audit value is not the scan result — it is the **decision trail**. Every `reasonCode` is paired with:
+- The rule that assigned it (traceable to `default-rules.ts`)
+- An optional exception: `reason` (min 20 chars), `expires_at`, `approved_by`
+- Provenance metadata in every SBOM: `ar:commit`, `ar:nodeVersion`, `ar:toolVersion`
+
+The `.audit-policy.json` is Git-controlled. Decisions live in version history, not in a running database.
+
+---
+
+## reasonCode System
+
+`reasonCode` is the primary auditable artifact. Every dependency in the output SBOM carries exactly one.
+
+```typescript
+export enum ReasonCode {
+  DEV_DEPENDENCY_ONLY    = 'DEV_DEPENDENCY_ONLY',    // scope === 'excluded'
+  OPTIONAL_DEPENDENCY    = 'OPTIONAL_DEPENDENCY',    // scope === 'optional'
+  TRANSITIVE_NO_EXPLOIT  = 'TRANSITIVE_NO_EXPLOIT',  // vulns > 0, required, !isDirect
+  DIRECT_UNPATCHED       = 'DIRECT_UNPATCHED',       // vulns > 0, required, isDirect
+  NO_KNOWN_VULNERABILITY = 'NO_KNOWN_VULNERABILITY', // no vulns found
+  EXEMPTED               = 'EXEMPTED'               // valid, non-expired exception
+}
+```
+
+### Extended reasonCodes (Phase 3)
+
+| Code | Trigger |
+|------|---------|
+| `EOL_DEPENDENCY` | Detects end-of-life runtimes and frameworks via npm registry metadata |
+| `DEPRECATED_PACKAGE` | Detects deprecated packages via npm registry `deprecated` field |
+
+These are assessed alongside vulnerability triage — they do not replace `reasonCode` but annotate it with a `arTriage.healthTier`.
+
+### Why `reasonCode` over a score
+A CVSS numeric score changes when the CVE is re-scored — the same lockfile produces different output across time. A `reasonCode` is a fact about the dependency at scan time: it is `DIRECT_UNPATCHED` because it is a direct dependency with no known patch. That fact is stable. The output is reproducible by any party with the same inputs.
+
+---
+
 ## Design Decisions (LOCKED)
-- **Vulnerabilities**: Inline on Component.vulnerabilities[]. Not VEX.
-- **metadata.component**: Sourced from package.json (name, version, description, author).
-- **Evidence**: { occurrences: readonly FilePath[] } only. No snippets or callstacks.
-- **Cache key**: ${ecosystem}:${name}@${version}. No integrity hash.
+
+- **Vulnerabilities**: Inline on `Component.vulnerabilities[]`. Not VEX-only.
+- **metadata.component**: Sourced from `package.json` (name, version, description, author).
+- **Evidence**: `{ occurrences: readonly FilePath[] }` only. No source snippets or callstacks.
+- **Cache key**: `${ecosystem}:${name}@${version}`. No integrity hash.
 - **License conflicts**: Extraction only. No resolution logic.
-- **Offline mode**: Exit code 2 on OSV unavailability.
-- **Monorepo**: Single lockfile per invocation.
-- **reasonCode Primacy**: Every Component output MUST carry a reasonCode field as the primary auditable justification. Human-readable rationale is supplemental.
-- **Deterministic-Only**: ALL classification logic in Phase 1 MUST be deterministic rule-based. Zero tolerance for probabilistic scoring or ML inference. _See [docs/determinism.md](determinism.md) for the full explanation of the rule engine, reasonCode priority table, and the static source-scan test._
+- **Offline mode**: Exit code `2` on OSV unavailability.
+- **Monorepo**: Single lockfile per invocation (Phase 3 targets multi-lockfile orchestration).
+- **reasonCode Primacy**: Every Component output MUST carry a `reasonCode` field as the primary auditable justification. Human-readable `arTriage.rationale` is supplemental.
+- **Deterministic-Only**: ALL classification logic in Phase 1 MUST be deterministic rule-based. Zero tolerance for probabilistic scoring or ML inference. See [docs/determinism.md](determinism.md).
 - **Immutable Data**: ALL data model fields and arrays in `src/core/sbom/cyclonedx/model.ts` MUST be declared `readonly`.
 - **Schema-First**: ALL CycloneDX 1.5 JSON output MUST validate against `schemas/cyclonedx-1.5.schema.json` before write.
+- **PURL Sovereignty**: `buildPurl()` in `src/core/utils/purl.ts` is the sole PURL source. Standard library encoders (`encodeURIComponent`, `URL`) are forbidden in that file.
+
+---
 
 ## Critical Systems
 
 ### CycloneDX 1.5 Compliance
-- Schema: Bundled schemas/cyclonedx-1.5.schema.json. No network fetch.
-- Validation: ajv compiled once at startup. Validate before write.
-- bom-ref: Generated via PURL.
+- Schema: bundled at `schemas/cyclonedx-1.5.schema.json`. No network fetch.
+- Validation: AJV compiled once at startup, runs before every write.
+- `bom-ref`: derived from PURL via `buildPurl()`.
 
-### PURL
-- **DEPRECATED:** `src/adapters/npm/purl.ts` removed — canonical PURL source is `src/core/utils/purl.ts`
-- Generation MUST use custom function in `src/core/utils/purl.ts` (standard library encoders forbidden)
-- Full RFC-compliant encoding following PURL spec §3.3 exactly
-- Scoped packages: pkg:npm/%40scope%2Fname@version
+### OSV Integration
+- **Only endpoint contacted:** `https://api.osv.dev/v1/querybatch`
+- **Data transmitted:** PURLs only. No source code, repository URLs, secrets, or environment variables.
+- **Network failure:** exit code `2`, SBOM and report still written with `NO_KNOWN_VULNERABILITY` as conservative default.
+- Batched: up to 1000 PURLs per request, 30s timeout.
 
-### License
-- Extracted from npm license field.
-- Normalized to SPDX expressions or named licenses.
+### PURL Construction (`src/core/utils/purl.ts`)
+- Scoped packages: `pkg:npm/%40scope%2Fname@version`
+- `%2F` encoding on namespace separator is mandatory per PURL spec §3.3
+- No `encodeURIComponent`, no `URL` constructor
+- Exhaustive unit test coverage in `test/unit/purl.test.ts`
 
-### Caching Layer
-- Type: JSON file at ~/.audit-ready/osv-cache.json + in-memory LRU (max 500 entries).
-- TTL: 24 hours.
-- Key: pkg:npm/name@version.
-- Flag: --force-refresh bypasses cache.
-
-### Triage Engine
-- Rule evaluation: First-match wins. Priority-order list.
-- reasonCode: Machine-readable audit justification (primary output)
-- Reachability score (supplemental):
-  - direct = 1.0
-  - transitive = 0.5
-  - dev = 0.2
-  - optional = 0.1
-- Never downgrade Critical severity below "Needs Review".
-- Rationale template: "Vulnerability ${id} is ${depType} and has reachability weight ${weight}."
-
-## Strategic Pivot (Non-Negotiable)
-Three principles that override any prior design decision:
-
-1. **No LLM inference in Phase 1** — all classification is deterministic rule-based logic. Every verdict must be reproducible from the same inputs with no variance.
-2. **Full transparency** — the tool never sends user code or secrets anywhere. Only PURLs go to OSV. This must be documented in the CLI output itself (`--explain-network` flag, Phase 2).
-3. **Rationale-first, not detection-first** — the core value is mapping detected vulnerabilities to defensible, auditable justifications. Every output node carries a `reasonCode`.
-
-## New Architectural Principles
-- **src/core Isolation**: Zero external dependencies. Node.js built-ins also banned — pure functions only.
-- **Schema First**: CycloneDX 1.5 JSON is the canonical output. All output passes schema validation before write.
-- **Immutability**: All data model fields and arrays are readonly. No exceptions.
-- **No-Magic**: Every classification decision carries a reasonCode. No black-box scoring.
-
-## MVP Roadmap
-
-### Phase 0: End-to-end pipeline (DEPRECATED)
-**Note**: This phase is superseded by the strategic pivot. The lockfile-v2 parser is replaced by the v1/v2/v3 normalizer in Phase 1, Task 1.
-**Deliverables:** Parse package-lock.json, generate sbom.json and basic audit-report.md
-**Acceptance:**
-- npx audit-ready scan creates sbom.json and audit-report.md
-- Completes in <5s on 10-dep project
-- Exits code 0 on success, 1 on parse failure
-
-### Phase 1: Foundation, Logic, Compliance & Transparency (Reworked)
-**Deliverables:** Normalized PackageNode from all lockfile versions, rule-based triage with reasonCode, CycloneDX 1.5 + VEX output, self-audit capability
-**Acceptance:**
-- All three lockfile versions (v1/v2/v3) produce identical graph shape
-- Zero non-deterministic output from triage engine
-- Output passes ajv validation against schemas/cyclonedx-1.5.schema.json
-- Tool can generate self-SBOM and verify its own integrity
-
-Phase 1 Execution Plan (sequence is fixed — each task gates the next):
-
-| # | Name | Deliverable | Gate |
-|---|------|-------------|------|
-| 1 | Foundation | Normalized `PackageNode` from npm v1/v2/v3 lockfiles | All 3 versions produce identical graph shape |
-| 2 | Logic | Rule-based triage engine with `reasonCode` per verdict | Zero non-deterministic output |
-| 3 | Compliance | CycloneDX 1.5 JSON + VEX document output | Passes CycloneDX schema validation |
-| 4 | Transparency | Self-SBOM generation + provenance in CI/CD workflow | Tool can audit itself |
-
-**Task 1 Gate:** No `PackageNode` generation logic is written until `test/unit/purl.test.ts` passes fully.
+### Caching Layer (Phase 3 enhancement)
+- Type: JSON file at `~/.audit-ready/osv-cache.json` + in-memory LRU (max 500 entries)
+- TTL: 24 hours
+- Key: `pkg:npm/name@version`
+- `--force-refresh` bypasses cache
 
 ---
 
-### PURL Generation — `src/core/utils/purl.ts`
+## Phase 3: Cache, Health Check & Automated Audit Trail
 
-`PackageNode.purl` must be generated by a custom function in `src/core/utils/purl.ts`.
-Standard library URL encoders (`encodeURIComponent`, `URL`, etc.) are forbidden for this function.
+### Phase 3.1: Integrated Cache Platform
 
-**Reason:** Encoding inconsistencies (`@` → `%40`, `/` → `%2F`, etc.) between libraries and between npm lockfile versions produce divergent PURL strings for the same package. In an audit context, a PURL mismatch between the SBOM and the VEX document is a fatal evidence inconsistency — it invalidates the audit trail.
+Two-tier cache design to balance performance and audit reliability:
 
-**Required behavior:**
-- Namespace separator `/` in scoped packages (`@scope/name`) must be encoded as `%2F` in the PURL name segment
-- `@` in `pkg:npm/%40scope%2Fname@version` must follow the [PURL spec §3.3](https://github.com/package-url/purl-spec) exactly
-- Version string is appended unencoded after the final `@`
-- Function signature: `buildPurl(name: string, version: string): string`
-- Must include an exhaustive unit test suite in `test/unit/purl.test.ts` covering: scoped packages, unscoped packages, versions with pre-release labels, names with hyphens and dots
-
-**Review priority:** This function is the highest-review-priority item in Phase 1. No other Task 1 code is merged until `purl.ts` passes review.
-
-### Phase 2: Triage engine and reachability (Updated for reasonCode)
-**Deliverables:** engine.ts, reachability.ts, default-rules.ts, excuses.ts, top-fixes.ts (updated to use reasonCode)
-**Acceptance:**
-- Every vulnerability has reasonCode (primary), reachabilityScore, rationale, adjustedSeverity
-- "Excuses" section lists waived items with reasonCode and rationale
-- "Top 5 Fixes" ordered: direct+critical > direct+high > transitive+critical > transitive+high
-- Critical vulns on transitive deps never downgraded below "Needs Review"
-
-#### Phase 2 Implementation (P0 + P1) — Complete
-
-**P0 — `--fail-on` and `--dry-run`** *(complete: 2026-05-02)*
-- `matchesFailPolicy()` — `src/core/triage/engine.ts`; zero Date/Math.random/process.env references
-- `parseScanOptions()` — `src/cli/parser.ts`; validates `--fail-on` codes at parse time; exits code 1 before scan on invalid value
-- `checkPolicyViolations()` — `src/cli/commands/scan.ts`; logs violations, exits code 1 on non-dry-run violations
-- `--dry-run` skips all network calls and file writes; still runs triage and policy checks
-- `test/unit/policy.test.ts` — 8 tests (match, no-match, empty codes, multi-code, determinism, banned-token source scan)
-- `test/integration/fail-on.test.ts` — 8 tests (parse-time exit 1, valid codes, multi-code, equals syntax, dryRun defaults)
-
-**P1 — SARIF 2.1.0 output** *(complete: 2026-05-02)*
-- `buildSarif(components)` pure adapter — `src/adapters/output/sarif.ts`
-- `schemas/sarif-schema-2.1.0.json` — minimal conforming schema; `$schema` field omitted to avoid AJV v8 meta-schema loading error
-- `--output-sarif <path>` flag — `src/cli/parser.ts` and `src/cli/index.ts`
-- `writeSarifReport()` — `src/cli/commands/scan.ts`; structural validation only (no ajv at runtime; failure warns and continues)
-- ReasonCode → SARIF level: `DIRECT_UNPATCHED → "error"`, `TRANSITIVE_NO_EXPLOIT → "warning"`, `DEV_DEPENDENCY_ONLY/OPTIONAL_DEPENDENCY → "note"`, `NO_KNOWN_VULNERABILITY → omitted`
-- `locations[].physicalLocation.artifactLocation.uri` = node purl; `uriBaseId = "ROOT"`; ruleId = reasonCode
-- `test/unit/sarif.test.ts` — 13 tests (per-code mapping, NO_KNOWN_VULNERABILITY omission, tool metadata, deduplicated rules, determinism, ajv schema validation)
-- ajv NOT in runtime CLI; test files use `createRequire()` pattern for ESM/CJS interop
-- `test/integration/sarif-output.test.ts` — CLI `--output-sarif` end-to-end verification
-
-#### Phase 2 Pending (P2 + P3)
-- **P2** expiry-based exception management — gated on user signal
-- **P3** `.audit-policy.json` externalized config — gated on user signal
-
-#### Directory Structure Additions (Phase 2)
 ```
-src/adapters/output/
-├── sarif.ts        ← P1
-└── markdown/
-
-schemas/
-├── cyclonedx-1.5.schema.json
-└── sarif-schema-2.1.0.json  ← P1
-
-test/
-├── unit/
-│   ├── sarif.test.ts        ← P1
-│   └── policy.test.ts       ← P0
-└── integration/
-    ├── fail-on.test.ts      ← P0
-    └── sarif-output.test.ts ← P1
+Cache Tier 1: In-memory LRU (max 500 entries, session-scoped)
+     ↓ miss
+Cache Tier 2: ~/.audit-ready/osv-cache.json (24h TTL, persistent)
+     ↓ miss
+         OSV.dev (only external endpoint)
 ```
 
-### Phase 3: Caching and performance
-**Deliverables:** cache.ts with 24h TTL and LRU, --force-refresh flag, progress spinner
-**Acceptance:**
-- Second scan on same project: <1s, zero network calls
-- 1000-dependency project: <30s
-- OSV queries deduped by pkg:npm/name@version
+**Audit constraint:** Cache entries are PURL-to-vulnerability-set only. No source code, no lockfile contents. The cache is a performance optimisation, not a data store. Entries expire after 24h to prevent stale vulnerability data from masking new CVEs.
 
-### Phase 4: Config system
-**Deliverables:** config/loader.ts, config/defaults.ts, npx audit-ready init
-**Acceptance:**
-- Project-level .auditrc.json overrides defaults
-- user-defined rules take effect
-- npx audit-ready init generates valid .auditrc.json
-- Invalid config throws clear error with key and line
+### Phase 3.2: Automated Audit Trail Management (Git Flow)
 
-### Phase 5: Polish
-**Deliverables:** Full 6-section Markdown report, structured errors (ParseError, NetworkError, ValidationError), --output-dir, --format, --lockfile flags
-**Acceptance:**
-- All 6 report sections present
-- Error messages are specific (e.g., "Line 1423: unexpected null in version field")
-- npx audit-ready scan --help shows all options and defaults
-- JSON output minified by default; --pretty enables formatting
+`audit-ready` supports committing scan results to the repository as a living audit log. This is the feature auditors most consistently request: a chronological record of "what changed, when, and why."
 
-## Test Strategy
+**Recommended CI integration:**
+```bash
+npx audit-ready scan --save --commit
+```
 
-### Golden Files
-- Commit expected output to test/snapshots/ for each lockfile version.
-- Compare generated output byte-for-byte against snapshots.
-- Replace non-deterministic fields (timestamp, serialNumber) with TIMESTAMP, UUID in golden files.
+**What `--save` does:**
+- Writes scan output to `.audit-history/${date}.json` (SBOM + decision log)
+- Produces a signed/identified commit in the repository
 
-### OSV API Contract Tests
-- Use nock to mock api.osv.dev.
-- Test against pinned responses in test/fixtures/osv-responses/.
-- Assert every field in osv-to-cyclonedx mapping is preserved.
+**Recommended directory structure:**
+```
+.audit-policy.json      # Team approval rules and exception list (Git-controlled)
+.audit-history/         # Evidence — auditors review this directory
+├── 2026-05-01.json      # Snapshot: SBOM + reasonCode log for the audited period
+├── 2026-05-15.json
+└── ...
+```
 
-### Snapshot Testing Rules
-- Update snapshot files only when output change is intentional.
-- Never snapshot timestamps or UUIDs directly.
-- Use expect.any(String) for non-deterministic field structure checks.
+**Chronological explanation function:**
+Auditors can trace the commit log to retrieve any past scan:
+```bash
+git log --oneline .audit-history/
+git show <commit>:$(date +%Y-%m-%d).json  # Reconstruct any past snapshot
+```
 
-### Snapshot Testing
-`test/snapshots/sbom-baseline.json` is the golden reference for CycloneDX serializer output.
-`serialNumber` and `metadata.timestamp` are normalized to fixed values before comparison.
-Snapshot updates require explicit human review — automated snapshot regeneration is prohibited.
+The SBOM provenance properties (`ar:commit`, `ar:nodeVersion`, `ar:toolVersion`) link the artifact to the exact commit. Downloading the artifact and reading `properties[]` provides the second link. Tampering with either requires changing the Git history.
 
-## Critical Risks (Pre-Launch Checklist)
+**`scripts/generate-provenance.ts`** embeds build-time metadata (git commit, Node version, tool version) into `sbom.json` properties. Add to CI as a build step:
+```json
+{
+  "scripts": {
+    "generate-provenance": "npx ts-node scripts/generate-provenance.ts"
+  }
+}
+```
 
-### CR-1: CycloneDX schema drift
-**Mitigation:** Validate against cyclonedx-cli validate and syft convert
+### Phase 3.3: Enhanced Health Assessment (reasonCode Health Tier)
 
-### CR-2: PURL encoding errors
-**Mitigation:** Unit test all scoped, prerelease, build metadata patterns against purl-spec
+In addition to vulnerability classification, Phase 3 introduces `arTriage.healthTier` — an annotation layer that assesses the operational lifetime of a dependency:
 
-### CR-3: OSV API downtime
-**Mitigation:** Cache + retry (3 attempts, 1s/4s/16s) + graceful degradation (exit code 2)
+| healthTier | Trigger |
+|-----------|---------|
+| `EOL` | Runtime or framework has reached end-of-life (detected via npm registry metadata) |
+| `DEPRECATED` | Package has `deprecated` field set in npm registry |
+| `ACTIVE` | Neither of the above |
 
-### CR-4: Reachability false negatives
-**Mitigation:** Label all scores "HEURISTIC" in report. Never downgrade Critical severity.
+This does not change the `reasonCode`. A deprecated package with no known vulnerabilities is still `NO_KNOWN_VULNERABILITY` with `arTriage.healthTier: DEPRECATED`. The health tier surfaces a separate risk dimension that vulnerability scanning alone misses: dependencies that are not yet vulnerable but will become maintenance liabilities.
 
-### CR-5: License field unreliability
-**Mitigation:** Normalize to SPDX. Emit warning for unknown licenses. --strict-licenses flag to error.
+---
 
-### CR-6: Audit trail completeness
-**Mitigation:** Include metadata.timestamp (ISO-8601), metadata.tools.name + version, lockfile SHA-256, and OSV query timestamp.
+## Audit-Specific Operational Protocol
 
-### CR-7: npm lockfile format drift (v10+)
-**Mitigation:** parser.ts throws explicit error for unknown lockfileVersion. Design allows adding lockfile-v4.ts without refactor.
+The following templates allow design partners to be audit-ready from day one of implementation.
+
+### Auditor Response Flow (Q&A Template)
+
+When auditors raise concerns, the team should be able to respond immediately:
+
+**"Why was this vulnerability left unaddressed?"**
+→ Provide `reasonCode` and the matching rule from `default-rules.ts`. Explain whether the package is `DEV_DEPENDENCY_ONLY`, `TRANSITIVE_NO_EXPLOIT`, or otherwise out of the production path.
+
+**"Who made the security exception decision?"**
+→ Show `approved_by` from the relevant entry in `.audit-policy.json`. This field records the team, individual, or ticket reference that signed off.
+
+**"Has the exception expired? Is it still valid?"**
+→ Run `audit-ready audit-exceptions` to check all `expires_at` values. Provide the date and explain the current mitigation plan or renewal status.
+
+**"Can you reproduce this result?"**
+→ Run `audit-ready audit-self` to generate the tool's own SBOM using the production pipeline. Verify `ar:commit` in `properties[]` matches the commit being audited.
+
+### Recommended Onboarding Checklist for Design Partners
+
+- [ ] `audit-ready scan` runs in CI on every merge to `main`
+- [ ] `.audit-policy.json` is committed to the repository and reviewed in PRs
+- [ ] `audit-ready audit-exceptions` runs before every release; expired entries block the build
+- [ ] `audit-ready audit-self` runs in CI to verify tool integrity
+- [ ] `.audit-history/` directory is committed and included in artifact uploads
+- [ ] All exception `reason` fields are specific technical justifications (minimum 20 characters)
+- [ ] All exception `approved_by` fields are non-empty (team name, individual name, or ticket reference)
+- [ ] `ar:commit`, `ar:nodeVersion`, `ar:toolVersion` are present in every SBOM `properties[]`
+- [ ] SARIF output is uploaded to GitHub Advanced Security on every scan
+
+---
+
+## Phase 1–2 Implementation Status
+
+### Phase 1 — Complete
+| Task | Status | Date |
+|------|--------|------|
+| Foundation (normalized PackageNode, v1/v2/v3) | ✅ | 2026-05-01 |
+| Logic (rule-based triage, reasonCode) | ✅ | 2026-05-01 |
+| Compliance (CycloneDX 1.5 + VEX, AJV schema validation) | ✅ | 2026-05-02 |
+| Transparency (audit-ready audit-self, provenance script) | ✅ | 2026-05-02 |
+
+### Phase 2 — Complete
+| Item | Status | Date |
+|------|--------|------|
+| P0: `--fail-on` and `--dry-run` (`matchesFailPolicy`, static banned-token test) | ✅ | 2026-05-02 |
+| P1: SARIF 2.1.0 output (GitHub Advanced Security integration) | ✅ | 2026-05-02 |
+| P2: Exception management (`applyExceptions`, `audit-exceptions`) | ✅ | 2026-05-04 |
+| P3: `.audit-policy.json` externalized config (`loadConfig`, `--init`, `validate-config`) | ✅ | 2026-05-04 |
+
+### Phase 3 — In Progress
+| Feature | Status |
+|---------|--------|
+| OSV cache (two-tier, 24h TTL) | 🚧 |
+| `--force-refresh` flag | 🚧 |
+| `--save --commit` git history integration | 🚧 |
+| Phase 3.3 Health Assessment (`EOL_DEPENDENCY`, `DEPRECATED_PACKAGE`, `healthTier`) | 🚧 |
+
+### Phase 4–5 — Pending
+- Multi-lockfile / monorepo support
+- `--force` flag for emergency exception override (Phase 5)
+- Structured errors with file/line specificity
+
+---
+
+## Strategic Pivot (Non-Negotiable)
+
+Three principles that override any prior design decision:
+
+1. **No LLM inference** — all classification is deterministic rule-based logic. Every verdict must be reproducible from the same inputs with no variance.
+2. **Full transparency** — the tool never sends user code or secrets anywhere. Only PURLs go to OSV. See [docs/transparency.md](transparency.md).
+3. **Rationale-first, not detection-first** — the core value is mapping detected vulnerabilities to defensible, auditable justifications. Every output node carries a `reasonCode`.
+
+## New Architectural Principles
+- **`src/core` Isolation**: Zero external dependencies. Node.js built-ins also banned — pure functions only.
+- **Schema First**: CycloneDX 1.5 JSON is the canonical output. All output passes schema validation before write.
+- **Immutability**: All data model fields and arrays are `readonly`. No exceptions.
+- **No-Magic**: Every classification decision carries a `reasonCode`. No black-box scoring.
+
+---
 
 ## Model.ts Specification (Data Contract)
 - CycloneDX 1.5 inspired. Fields match spec names where applicable.
-- Custom fields: none.
-- All arrays: readonly.
+- All arrays: `readonly`.
 - All objects: immutable.
-- Zero external dependencies.
+- Zero external dependencies in `src/core/`.
 - TypeScript strict mode enabled.
-- File: src/core/sbom/cyclonedx/model.ts
-- Implements: Bom, Component, Vulnerability, Rating, Affects, ExternalReference, Evidence.
+- File: `src/core/sbom/cyclonedx/model.ts`
+- Implements: `Bom`, `Component`, `Vulnerability`, `Rating`, `Affects`, `ExternalReference`, `Evidence`.
 
 This document defines the contract between the implementation and the audit. It does not describe intent. It states outcome. Changes require PR and approval from two senior engineers.
 
 ---
 
-## Policy Enforcement Layer
+## Critical Risks (Pre-Launch Checklist)
 
-### Purpose
-The Policy Enforcement Layer is the gate between triage results and CLI output. It applies user-defined policy to `TriageResult[]` and produces `PolicyResult[]` that control exit codes and report annotations. It **never modifies triage logic** — it only evaluates and transforms its output.
-
-### Integration Flow
-
-```
-PackageNode[]  →  applyTriage()  →  TriageResult[]  →  applyPolicy(.audit-policy.json)  →  PolicyResult[]  →  [exit code / report]
-```
-
-1. **`applyTriage()`** — deterministic rule evaluation, outputs `TriageResult[]` with `reasonCode`, `adjustedSeverity`, `rationale`
-2. **`applyPolicy()`** — reads `.audit-policy.json`, matches `reasonCode` entries to results, annotates or overrides
-3. **Output** — exit code derived from `PolicyResult[]` violation count; annotated results surface in report
-
-### Design Rules
-- Policy evaluation is purely declarative — no side effects
-- `applyPolicy()` is pure: same inputs always produce same outputs
-- `.audit-policy.json` is the only policy source; CLI flags are separate from policy logic
-- Policy never touches `TriageEngine` internals — it operates only on `TriageResult[]`
-
----
-
-## Exception Management Principles
-
-### Schema Contract
-Every exception entry in `.audit-policy.json` **must contain all three fields**. If any field is missing or invalid, the tool refuses to run entirely — no silent degradation, no partial application.
-
-| Field | Type | Constraint |
-|-------|------|------------|
-| `reason` | `string` | Minimum 20 characters. Must be a specific technical justification, not a placeholder or vague note |
-| `expires_at` | `ISO 8601 date string` | Throws `ExpiredExceptionError` — operator must renew or remove before scan proceeds |
-| `approved_by` | `string` | Name or identifier of the approving party (team, individual, or ticket reference) |
-
-### Expired Exceptions
-- Any exception where `expires_at` is in the past causes `loadConfig` to throw `ExpiredExceptionError` with exit code 1
-- Error message includes the expired exception ID and instructs the operator to renew or remove it
-- There is no silent fallback — expired exceptions must be explicitly resolved before the scan proceeds
-- Future: `--force` flag (Phase 5) will downgrade this to a warning for emergency overrides
-
-### Rationale
-Auditable exceptions must carry enough specificity for a reviewer to understand the trade-off decision without re-running the analysis. Generic reasons ("ok", "ignored", "not relevant", "see ticket") provide no value in a compliance audit. The 20-character floor ensures that exception authors must make a deliberate choice.
+| Risk | Mitigation |
+|------|------------|
+| CR-1: CycloneDX schema drift | Validate against `cyclonedx-cli validate` and `syft convert` |
+| CR-2: PURL encoding errors | Unit test all scoped, prerelease, build metadata patterns against purl-spec |
+| CR-3: OSV API downtime | Cache + retry (3 attempts, 1s/4s/16s) + graceful degradation (exit code 2) |
+| CR-4: Reachability false negatives | Label all scores "HEURISTIC" in report. Never downgrade Critical severity. |
+| CR-5: License field unreliability | Normalize to SPDX. Emit warning for unknown licenses. `--strict-licenses` flag to error. |
+| CR-6: Audit trail completeness | Include `metadata.timestamp`, `metadata.tools`, lockfile SHA-256, and OSV query metadata in all outputs |
+| CR-7: npm lockfile format drift (v10+) | `parser.ts` throws explicit error for unknown `lockfileVersion`. Adapters are version-specific and swappable. |
+| CR-8: Stale exceptions silently suppressing real findings | `audit-exceptions` exits code 1 on any expired entry; no silent fallback |
+| CR-9: SBOM integrity tampering | Provenance metadata (`ar:commit`, `ar:nodeVersion`, `ar:toolVersion`) embedded in artifacts; Git history link validated by auditor |
 
 ---
 
 ## CI/CD Integration Patterns
 
 ### Pattern 1: Scan → Fail-on (Exit Code Gate)
-
 ```
 Pipeline Start
      │
@@ -421,108 +377,59 @@ npx audit-ready scan --dry-run
      │
      ├── exit 0 → Continue (no policy violations)
      │
-     └── exit 1 → Stop pipeline
-                   └── CI fails build
+     └── exit 1 → Stop pipeline; CI fails build
 ```
 
-- Use `--dry-run` (simulated, no audit-policy applied, no network calls) for pre-commit gates
-- Use `--fail-on <reasonCode>[,...]` for post-merge enforcement
-- Exit code `1` means at least one finding matched the `--fail-on` set; `0` means no matches
-
-### Pattern 2: Scan → PR Comment (Annotation)
-
+### Pattern 2: Scan → SARIF Upload (GitHub Advanced Security)
 ```
-PR Opened
+npx audit-ready scan --output-sarif results.sarif --fail-on DIRECT_UNPATCHED
      │
      ▼
-npx audit-ready scan --json > triage-results.json
+actions/upload-sarif@v3
      │
      ▼
-CI step reads triage-results.json
-     │
-     ▼
-gh pr comment --body "$(cat summary.txt)"
+GitHub Security tab: findings grouped by ruleId (= reasonCode)
 ```
 
-- Output: Markdown summary of `reasonCode`, severity, and counts per category
-- CI step posts as a PR comment on every push to the PR branch
-- Does not block merge by default — informational only
-
-### Pattern 3: Scan → SARIF Upload (GitHub Advanced Security)
-
+### Pattern 3: Scan → Audit History Commit (Phase 3)
 ```
-npx audit-ready scan --format sarif > results.sarif
+npx audit-ready scan --save --commit
      │
      ▼
-actions/upload-sarif@v1
+.audit-history/${date}.json written and committed
      │
      ▼
-GitHub Advanced Security Dashboard
-     │
-     ▼
-Security tab shows findings grouped by ruleId (= reasonCode)
+Artifact uploaded with provenance properties
 ```
-
-- SARIF 2.1.0, uploaded via `actions/upload-sarif`
-- `ruleId` = `reasonCode` (e.g., `DEV_DEPENDENCY`, `TRANSITIVE_CRITICAL`)
-- `level` = `error` / `warning` / `note` per reasonCode mapping (see `docs/sarif-integration.md`)
-- Findings visible in the GitHub Security tab under "Code scanning alerts"
-- Upload does not block merge — configure branch protection rules separately to enforce
 
 ---
 
 ## Configuration Precedence
 
-The tool reads configuration from two sources:
-
 | Source | Location |
-|--------|----------|
-| CLI flags | `--fail-on`, `--policy` |
+|--------|---------|
+| CLI flags | `--fail-on`, `--policy`, `--output-dir`, `--output-sarif` |
 | Policy file | `.audit-policy.json` (via `--policy <path>`) |
 
-### Merge Rules
-
-| Field | When both CLI and file are present |
-|-------|-------------------------------------|
-| `failOn` | **CLI wins** — file value is discarded |
-| `exceptions` | **Merged (additive union)** — file exceptions and any future CLI-supplied exceptions are combined; no overwrite |
-
-### Rationale
-
-`failOn` is a session-scoped enforcement gate — it makes sense for the immediate invocation to win. `exceptions` represent auditable decisions stored in a version-controlled file — they should never be silently shadowed by a CLI flag.
-
-### Implication
-
-Running:
-```
-audit-ready scan --fail-on DIRECT_UNPATCHED
-```
-from a directory with:
-```json
-{ "failOn": ["TRANSITIVE_NO_EXPLOIT", "DIRECT_UNPATCHED"] }
-```
-produces the same result as:
-```json
-{ "failOn": ["DIRECT_UNPATCHED"] }
-```
-…because the CLI value wins. The file contents are not modified.
-
-### Determinism
-
-Both the file loader (`loadConfig`) and the resolution helper (`resolveFailOn`) contain zero calls to `Date.now()`, `new Date()`, `Math.random()`, or `process.env`. Given the same inputs, they always produce identical outputs.
+**Merge rules:**
+- `failOn`: **CLI wins** — file value is discarded for the session
+- `exceptions`: **Merged (additive union)** — file exceptions are never shadowed by CLI flags
 
 ---
 
-## Phase 2 P3 — Audit-Policy External Configuration
+## Exception Management Principles
 
-**Status:** Complete (2026-05-03)
+### Schema Contract
+Every exception entry in `.audit-policy.json` must contain all three fields. The tool refuses to run if any field is missing or invalid — no silent degradation, no partial application.
 
-**Deliverables:**
-- `src/config/loader.ts` — `loadConfig()` and `defaultConfig()`; AJV schema validation; expired-exception guard
-- `src/cli/commands/init.ts` — `audit-ready --init`; template with inline documentation; overwrite prompt
-- `src/cli/commands/validate-config.ts` — `audit-ready validate-config`; schema + expiry reporting; exit 1 on either failure
-- `schemas/audit-policy.schema.json` — JSON Schema reference document
+| Field | Constraint |
+|-------|-----------|
+| `reason` | Minimum 20 characters. Specific technical justification. No placeholders. |
+| `expires_at` | ISO 8601. `loadConfig` throws `ExpiredExceptionError` with exit code 1 if in the past. |
+| `approved_by` | Non-empty string: team name, individual name, or ticket reference. |
 
-**Configuration Precedence:** CLI `--fail-on` overrides file `failOn`. File `exceptions` are additive — never shadowed.
+### Expired Exceptions
+There is no silent fallback. Before every scan, `audit-exceptions` or `loadConfig` checks all `expires_at` values. An expired entry blocks the build with a clear error message naming the exception ID. The operator must renew or remove the entry. `--force` (Phase 5) will provide an emergency override that downgrades to a warning.
 
-**Test coverage:** 12 tests in `test/unit/config.test.ts` covering valid/missing schema-invalid and expired scenarios.
+### Rationale
+Auditable exceptions must carry enough specificity for a reviewer to understand the trade-off without re-running the analysis. Generic reasons ("ok", "ignored", "N/A") provide no value in a compliance audit. The 20-character floor enforces deliberate authoring.

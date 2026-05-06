@@ -30,7 +30,9 @@ export enum ReasonCode {
   /** No known vulnerabilities in current OSV data */
   NO_KNOWN_VULNERABILITY = 'NO_KNOWN_VULNERABILITY',
   /** Suppressed by a valid, non-expired security exception */
-  EXEMPTED = 'EXEMPTED'
+  EXEMPTED = 'EXEMPTED',
+  /** Package is deprecated — npm registry has marked it obsolete */
+  DEPRECATED_PACKAGE = 'DEPRECATED_PACKAGE',
 }
 
 /** -
@@ -204,6 +206,12 @@ export interface Component {
    * Used by triage rules to distinguish direct from transitive vulnerabilities.
    */
   readonly isDirect?: boolean;
+  /**
+   * Deprecation message from the package registry, if the package has been
+   * officially deprecated and the lockfile contains this field (npm v2+).
+   * Undefined when the package is live or the field is absent from the lockfile.
+   */
+  readonly deprecated?: string;
 }
 
 /**
